@@ -1,9 +1,17 @@
 # You can add comments to these files with #
 h	~/
-d	~/Documents
-D	~/Downloads
-m	~/Music
-pp	~/Pictures
-vv	~/Videos
-s	~/.scripts
-cf	~/.config
+.d	~/.dotfiles
+.c	~/.config
+D	~/Documents
+d	~/Downloads
+a ~/hiwi/ACPLT-DevKit-linux63/acplt
+M	~/Music
+P	~/Pictures
+V	~/Videos
+S	~/.dotfiles/shortcut-sync
+c	~/.config
+sb	~/Owncloud/Studium/ws18/Berechenbarkeit und Komplexität
+sa	~/Owncloud/Studium/ws18/Automatic Speech Recognition
+sn	~/Owncloud/Studium/ws18/Numerisches Rechnen
+sc	~/Owncloud/Studium/ws18/Compilerbau
+ss	~/Owncloud/Studium/ws18/Softwaretechnik

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Config locations
-folders="$HOME/.scripts/folders"
-configs="$HOME/.scripts/configs"
+folders="$HOME/.dotfiles/shortcut-sync/folders"
+configs="$HOME/.dotfiles/shortcut-sync/configs"
 
 # Output locations
 shell_shortcuts="$HOME/.shortcuts"
@@ -10,11 +10,11 @@ ranger_shortcuts="$HOME/.config/ranger/shortcuts.conf"
 qute_shortcuts="$HOME/.config/qutebrowser/shortcuts.py"
 
 # Shell rc file (i.e. bash vs. zsh, etc.)
-shellrc="$HOME/.bashrc"
+shellrc="$HOME/.zshrc"
 
 # Download the shorcut files if not present.
-[[ ! -f $folders ]] && curl https://raw.githubusercontent.com/LukeSmithxyz/shortcut-sync/master/folders > "$folders"
-[[ ! -f $configs ]] && curl https://raw.githubusercontent.com/LukeSmithxyz/shortcut-sync/master/configs > "$configs"
+[[ ! -f $folders ]] && curl https://raw.githubusercontent.com/zzzdeb/shortcut-sync/master/folders > "$folders"
+[[ ! -f $configs ]] && curl https://raw.githubusercontent.com/zzzdeb/shortcut-sync/master/configs > "$configs"
 
 # Remove
 rm -f $shell_shortcuts $ranger_shortcuts $qute_shortcuts
@@ -25,9 +25,9 @@ rm -f $shell_shortcuts $ranger_shortcuts $qute_shortcuts
 (grep "config.source('shortcuts.py')" $HOME/.config/qutebrowser/config.py)>/dev/null || echo "config.source('shortcuts.py')" >> $HOME/.config/qutebrowser/config.py
 
 # directory shortcuts
-sed "/^#/d" $folders | awk '{print "alias "$1"=\"cd "$2" && ls -a\""}' >> $shell_shortcuts
-sed "/^#/d" $folders | awk '{print "map g"$1" cd "$2"\nmap t"$1" tab_new "$2"\nmap m"$1" shell mv -v %s "$2"\nmap Y"$1" shell cp -rv %s "$2}' >> $ranger_shortcuts
-sed "/^#/d" $folders | awk '{print "config.bind(\";"$1"\", \"set downloads.location.directory "$2" ;; hint links download\")"}' >> $qute_shortcuts
+sed "/^#/d" $folders | awk '{tmp=$1; $1 = ""; print "alias ,"tmp"=\"cd \\\""$0"\\\" && ls -a\""}' | sed 's/ ~/$HOME/'>> $shell_shortcuts
+sed "/^#/d" $folders | awk '{tmp=$1; $1=""; print "map ,"tmp" cd "$0"\nmap t"tmp" tab_new "$0"\nmap m"tmp" shell mv -v %s "$0"\nmap Y"tmp" shell cp -rv %s "$0}' >> $ranger_shortcuts
+sed "/^#/d" $folders | awk '{tmp=$1; $1 = ""; print "config.bind(\","tmp"\", \"set downloads.location.directory \\\""$0"\\\" ;; hint links download\")"}'| sed 's/ ~\//~\//' >> $qute_shortcuts
 
 # dotfile shortcuts
 sed "/^#/d" $configs | awk '{print "alias "$1"=\"$EDITOR "$2"\""}' >> $shell_shortcuts
