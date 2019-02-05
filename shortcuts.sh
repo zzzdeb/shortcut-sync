@@ -26,7 +26,8 @@ rm -f $shell_shortcuts $ranger_shortcuts $qute_shortcuts
 
 # directory shortcuts
 sed "/^#/d" $folders | awk '{tmp=$1; $1 = ""; print "alias ,"tmp"=\"cd \\\""$0"\\\" && ls -a\""}' | sed 's/ ~/$HOME/'>> $shell_shortcuts
-sed "/^#/d" $folders | awk '{tmp=$1; $1=""; print "map ,"tmp" cd "$0"\nmap t"tmp" tab_new "$0"\nmap m"tmp" shell mv -v %s "$0"\nmap Y"tmp" shell cp -rv %s "$0}' >> $ranger_shortcuts
+sed "/^#/d" $folders | awk '{tmp=$1; $1=""; print "map ,"tmp" cd "$0"\nmap t"tmp" tab_new "$0}' >> $ranger_shortcuts
+sed "/^#/d" $folders | awk '{tmp=$1; $1=""; print "map m"tmp" shell mv -v %s \""$0"\"\nmap Y"tmp" shell cp -rv %s \""$0"\""}' | sed 's/ ~/$HOME/'>> $ranger_shortcuts
 sed "/^#/d" $folders | awk '{tmp=$1; $1 = ""; print "config.bind(\","tmp"\", \"set downloads.location.directory \\\""$0"\\\" ;; hint links download\")"}'| sed 's/ ~\//~\//' >> $qute_shortcuts
 
 # dotfile shortcuts

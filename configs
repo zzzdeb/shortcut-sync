@@ -1,10 +1,13 @@
-,ef	~/.dotfiles/shortcut-sync/folders
-,ec	~/.dotfiles/shortcut-sync/configs
+,esf	~/.dotfiles/shortcut-sync/folders
+,esc	~/.dotfiles/shortcut-sync/configs
+,ess	~/.dotfiles/shortcut-sync/shortcuts.sh
 ,eI	~/.dotfiles/install.conf.yaml
 ,eb	~/.bashrc
 ,ez	~/.zshrc
 ,ev	~/.config/nvim/init.vim
 ,er	~/.config/ranger/rc.conf
+,errifle	~/.config/ranger/rifle.conf
+,ercommands	~/.config/ranger/commands.py
 ,ei	~/.config/i3/config
 ,eq	~/.config/qutebrowser/config.py
 ,em	~/.config/mutt/muttrc
